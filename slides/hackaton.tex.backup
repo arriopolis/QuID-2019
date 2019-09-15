@@ -1,0 +1,105 @@
+% vim: spell spelllang=en_US
+\documentclass[english]{beamer}
+\usepackage[T1]{fontenc}
+%\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{ulem} % Strike through text
+\usepackage{babel}
+\usepackage{xcolor}
+\usepackage{multimedia}
+\usepackage{pifont} % for check and cross
+
+\usepackage{parskip}
+\usepackage{marvosym} %Lightning symbol
+\usepackage{tikz}
+
+% Adjust margins
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+%\renewcommand*{\familydefault}{\sfdefault} $ sans-serif font
+\newcommand{\spinup}{|\!\!\uparrow\rangle}
+\newcommand{\spindown}{|\!\!\downarrow\rangle}
+\newcommand{\bra}[1]{\langle#1\vert}
+\newcommand{\ket}[1]{\vert#1\rangle}
+\newcommand{\braket}[2]{\langle#1\vert#2\rangle}
+\newcommand{\id}{\mathrm{Id}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\bignorm}[1]{\Big\lVert#1\Big\rVert}
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\bignorm}[1]{\left\lVert#1\right\rVert}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\emph}[1]{{\usebeamercolor[fg]{frametitle} #1}}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+
+
+% Make strike-through red
+\newcommand\reduline{\bgroup\markoverwith
+{\textcolor{red}{\rule[0.5ex]{2pt}{2.0pt}}}\ULon}
+% Completely cross-out red
+\newcommand\redxout{\bgroup\markoverwith
+{\textcolor{red}{\hbox to.35em{\hss/\hss}}}\ULon}
+
+
+\usetheme{Malmoe}
+%\usetheme{default}
+\usecolortheme{beaver}
+\begin{document}
+
+\title{Draw any figure with a quantum algorithm}
+\author{Arjan Cornellissen, Farrokh Labib\\ (QuSoft, CWI, Amsterdam)}
+
+\maketitle
+%\section{Setup and definitions}
+
+
+\begin{frame}{Fourier series}
+  Any 1-periodic (analytic, differentiable?) function $f\colon [0,1]\to \C$ can be written as
+  \begin{align*}
+   f(t) = \sum_{k=-\infty}^{\infty}c_ke^{2\pi i k t}.
+  \end{align*}
+
+  
+  We can extract the coeffients as follows
+  \begin{align*}
+   c_k = \int_{0}^1f(t)e^{-2\pi i k t}dt.
+  \end{align*}
+
+  
+  Approximations: 1) $f(t) \approx \sum_{k=-K}^Kc_ke^{2\pi i k t}$ and 2) $c_k \approx \frac{e^{-\pi i k/M}}{M}\hat{f}_k$
+  here we use the midpoint rule for approximating the integral and
+  \begin{align*}
+   \hat{f}_k:=\sum_{j=0}^{M-1}f(\fram{k}{M}+\frac{1}{2M})e^{-2\pi i jk}.
+  \end{align*}
+  
+\end{frame}
+
+\begin{frame}
+ Let $z=(z_1,\dots,z_N)$ be $N$ points in $\C$. Define $$\ket{\psi}:=\frac{1}{\norm{z}}\sum_{j=0}^{N-1}z_j\ket{j}$$
+ 
+ Recall QFT: $QFT\ket{j}=\sum_{k=0}^{N-1}e^{-2\pi i j k }\ket{k}$. Then
+ \begin{align*}
+  QFT\ket{\psi}&=\frac{1}{\norm{z}}\sum_{j=0}^{N-1}\left(\sum_{k=0}^{N-1}z_ke^{-2\pi i j k}\right)\ket{j}\\
+  &\sum_{j=0}^{N-1}\hat{z}_{j}\ket{j}.
+ \end{align*}
+
+\end{frame}
+
+\begin{frame}{How to use this}
+ To draw figure, we need Fourier coeffients.
+\end{frame}
+
+
+\end{document}

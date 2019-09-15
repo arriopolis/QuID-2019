@@ -1,0 +1,63 @@
+\begin{frame}{Quantum Fourier transform}
+	This is a well-known circuit:
+	
+	\pause 
+	\begin{center}
+		\input{qft.tikz}
+	\end{center}
+	
+	\pause
+	Takes $\mathcal{O}(n^2)$ gates, so logarithmic in the number of data points.
+\end{frame}
+
+\begin{frame}
+	Divide and conquer approach:
+	\[\small \begin{bmatrix}
+		\alpha_{00\cdots0} \\ \vdots \\ \alpha_{01\cdots1} \\\hline \alpha_{10\cdots0} \\ \vdots \\ \alpha_{11\cdots1}
+	\end{bmatrix} = \begin{bmatrix}
+		r_{00\cdots00} \\ \vdots \\ r_{01\cdots1}e^{i\phi_{01\cdots1}} \\\hline r_{10\cdots0}e^{i\phi_{10\cdots0}} \\ \vdots \\ \alpha_{11\cdots1}e^{i\phi_{11\cdots1}}
+	\end{bmatrix} = \begin{bmatrix}
+		\\ a_0 \\ \\ \hline \\ a_1 \\ \\
+	\end{bmatrix}\]
+	\pause
+	We perform the following operation recursively:
+	\[\small \begin{bmatrix}
+		1 \\ 0 \\ \vdots \\ 0 \\\hline 0 \\ 0 \\ \vdots \\ 0
+	\end{bmatrix} \mapsto \begin{bmatrix}
+		\norm{a_0} \\ 0 \\ \vdots \\ 0 \\\hline e^{i\phi_{10\cdots0}}\norm{a_1} \\ 0 \\ \vdots \\ 0
+	\end{bmatrix}\]
+\end{frame}
+
+\begin{frame}{State preparation}
+	Circuit looks like this:
+	\begin{center}
+		\input{state_preparation.tikz}
+	\end{center}
+	Takes $\mathcal{O}(2^n)$ gates, so linear in the number of data points.
+\end{frame}
+
+\begin{frame}{Measure coefficients}
+	\pause
+	\begin{itemize}
+		\item Three step process:
+		\begin{itemize}
+			\item Measuring the amplitudes by computational basis measurements.
+			\item Measure absolute value of relative phases by first applying $H$ to one of the qubits.
+			\item Measure sign of relative phases by first applying $S$ and $H$ to one the qubits.
+		\end{itemize} \pause
+		\item Takes $\mathcal{O}(2^n)$ number of measurements, i.e., linear in the number of data points.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Demo}
+	\includegraphics[width=.45\textwidth]{elephant.png} \hfill
+	\includegraphics[width=.45\textwidth]{batman.png}
+\end{frame}
+
+\begin{frame}{Conclusion}
+	\pause
+	\begin{itemize}
+		\item No real speed-up here. \pause
+		\item Useful for benchmarking.
+	\end{itemize}
+\end{frame}

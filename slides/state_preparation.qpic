@@ -1,0 +1,10 @@
+a W
+b W
+a G $Y^{\theta_1}$ width=25
+a G $Z^{\phi_1}$ width=25
+a X
+b G $Y^{\theta_2}$ a width=25
+b G $Z^{\phi_2}$ a width=25
+a X
+b G $Y^{\theta_3}$ a width=25
+b G $Z^{\phi_3}$ a width=25

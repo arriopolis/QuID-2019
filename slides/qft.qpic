@@ -1,0 +1,10 @@
+a W {} {}
+b W {} {}
+c W {} {}
+a H
+b G $R_2$ a
+b H
+c G $R_4$ a
+c G $R_2$ b
+c H
+a c SWAP
